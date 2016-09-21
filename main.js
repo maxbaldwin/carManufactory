@@ -4,6 +4,7 @@
  */
 function Car () {
   // Create the manufactured date property (see above)
+  this.manufactured_date = Date.now(); 
 }
 
 /*
@@ -19,6 +20,7 @@ function Make (maker) {
   this.manufacturer = maker;
 }
 // Set the prototype to Car
+Make.prototype = new Car(); 
 
 /*
   1. Create a new constructor function for the make of your favorite car.
@@ -26,22 +28,47 @@ function Make (maker) {
   3. It must have one argument that will to hold the model name.
   4. The constructor must define a property to hold the model name.
  */
-function YourFavoriteMake (name) {
-  this.modelName = name;
+function Honda (name) {
+  this.model = name;
 }
-YourFavoriteMake.prototype = new Make(...);
-
+function Volkswagon (name) {
+  this.model = name; 
+}
+function Dodge (name) {
+  this.model = name; 
+}
+Honda.prototype = new Make("Honda");
+Volkswagon.prototype = new Make("Volkswagon");
+Dodge.prototype = new Make("Dodge"); 
 /*
     1. Create a constructor function named after your favorite car model.
     2. It must inherit from the specific make type you created in previous step.
     3. When creating the inheritance relationship, pass in the model name
        to the make constructor function
 */
-function YourFavoriteModel () {
-
+function Fit (name) {
+  this.modelName = name;
+}
+function Jetta (name) {
+  this.modelName = name; 
+}
+function GT40 (name) {
+  this.modelName = name;
 }
 // Set the prototype to appropriate model you created above and set the model name argument
-YourFavoriteModel.prototype = new YourFavoriteMake(...);
+Fit.prototype = new Honda("Fit");
+Jetta.prototype = new Volkswagon("Jetta"); 
+GT40.prototype = new Dodge("GT40"); 
+var mine = new Fit(); 
+var forTheWife = new Jetta();
+var mySecondBaby = new GT40(); 
+
+console.log("mine", mine); 
+mine.license = "9080807"; 
+console.log("forTheWife", forTheWife); 
+forTheWife.license = "384308";
+console.log("mySecondBaby", mySecondBaby); 
+mySecondBaby.license = "384039";
 
 /*
     Being an avid car collector, you own three different cars all of
